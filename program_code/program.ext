@@ -1,1 +1,58 @@
 https://leetcode.com/u/CzkAkW9SfL/
+Maximum Points You Can Obtain from Cards -leetcode 1423[Sliding Window]
+Problem Statement:
+The problem is to find the maximum score you can achieve by choosing exactly k elements from either the beginning or the end of the array.
+You need to maximize the sum of the selected elements.
+SOLUTION:
+class Solution {
+public:
+    int maxScore(vector<int>& arr, int k) {
+        int n = arr.size();
+        int maxi = INT_MIN;
+        int sum = 0;
+        for (int i = n - k; i < n; i++) {
+            sum = sum + arr[i];
+        }
+        cout << "First max: " << sum << endl;
+        maxi = max(maxi, sum);
+        int i = n - k, j = 0;
+        while (j < k) {
+            sum = sum - arr[i];
+            sum = sum + arr[j];
+            cout << maxi << endl;
+            maxi = max(maxi, sum);
+
+            i++;
+            j++;
+        }
+        return maxi;
+    }
+};
+Explanation of the Code:
+Initialization:
+
+The size of the array is stored in n.
+maxi is initialized to the smallest possible integer (INT_MIN) to track the maximum score.
+sum is initialized to 0 to calculate the sum of elements in the selected window.
+Calculate the Initial Window Sum:
+
+The initial sum of the last k elements of the array is calculated, as the problem allows picking elements from the end.
+Update the Maximum Score:
+
+The calculated sum of the last k elements is stored in maxi since it is the first possible score.
+Sliding Window Technique:
+
+Use a two-pointer approach to slide the window from the end of the array to the beginning.
+For each step:
+Remove one element from the current window (from the end of the array).
+Add one element from the start of the array to the window.
+This ensures all possible combinations of k elements are considered, starting with the most elements from the end and progressively taking more from the start.
+Update the Maximum:
+
+After each adjustment to the window, compare the new sum to maxi and update maxi if the new sum is larger.
+Return the Result:
+
+The final value of maxi represents the maximum score possible.
+Key Observations:
+The sliding window ensures that all combinations of k elements are checked without recalculating the sum for overlapping elements repeatedly, which optimizes performance.
+The algorithm efficiently finds the solution in O(k) time.
