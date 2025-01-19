@@ -1,5 +1,7 @@
 https://leetcode.com/u/CzkAkW9SfL/
-Maximum Points You Can Obtain from Cards -leetcode 1423[Sliding Window]
+
+Week-1:
+1.Maximum Points You Can Obtain from Cards -leetcode 1423[Sliding Window]
 Problem Statement:
 The problem is to find the maximum score you can achieve by choosing exactly k elements from either the beginning or the end of the array.
 You need to maximize the sum of the selected elements.
@@ -56,3 +58,41 @@ The final value of maxi represents the maximum score possible.
 Key Observations:
 The sliding window ensures that all combinations of k elements are checked without recalculating the sum for overlapping elements repeatedly, which optimizes performance.
 The algorithm efficiently finds the solution in O(k) time.
+2.Score of a String -leetcode 3110[two pointer & string]
+Problem Statement:
+The problem asks you to calculate the score of a string, which is defined as the sum of
+the absolute differences between the ASCII values of all adjacent characters in the string.
+SOLUTION:
+class Solution {
+public:
+    int scoreOfString(string s) {
+        int output=0,i=0,j=1;
+        while(j<s.size()){
+            output+=abs(s[i]-s[j]);
+            i++;j++;
+        }
+        return output;
+    }
+};
+ Explanation of the Code:
+
+1. Initialization:
+   `output` is initialized to `0` and will store the cumulative sum of absolute differences between adjacent characters.
+    Two pointers, `i` and `j`, are initialized to `0` and `1` respectively. These will traverse the string to compare adjacent characters.
+
+2. Iterate Through the String:
+    A `while` loop is used to iterate through the string while `j` remains within the bounds of the string's size.
+    For each iteration:
+     Calculate the absolute difference between the ASCII values of characters at indices `i` and `j` (`s[i]` and `s[j]`).
+      Add this difference to `output`.
+     Increment both `i` and `j` to move to the next pair of adjacent characters.
+
+3.Return the Result:
+    Once the loop completes, `output` contains the sum of absolute differences between all adjacent characters in the string.
+   The function returns `output` as the final result.
+
+Key Observations:
+The function efficiently computes the result in (O(n)) time, where (n) is the size of the string.
+ The use of two pointers allows the algorithm to iterate through the string in a single pass, minimizing redundant computations.
+ The function leverages the `abs` function to ensure all differences are treated as positive values, as required.
+
