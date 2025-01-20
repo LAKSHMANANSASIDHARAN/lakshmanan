@@ -1,6 +1,7 @@
 https://leetcode.com/u/CzkAkW9SfL/
 
 Week-1:
+DAY-1!!!!!!!!
 1.Maximum Points You Can Obtain from Cards -leetcode 1423[Sliding Window]
 Problem Statement:
 The problem is to find the maximum score you can achieve by choosing exactly k elements from either the beginning or the end of the array.
@@ -58,6 +59,8 @@ The final value of maxi represents the maximum score possible.
 Key Observations:
 The sliding window ensures that all combinations of k elements are checked without recalculating the sum for overlapping elements repeatedly, which optimizes performance.
 The algorithm efficiently finds the solution in O(k) time.
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 2.Score of a String -leetcode 3110[two pointer & string]
 Problem Statement:
 The problem asks you to calculate the score of a string, which is defined as the sum of
@@ -95,4 +98,112 @@ Key Observations:
 The function efficiently computes the result in (O(n)) time, where (n) is the size of the string.
  The use of two pointers allows the algorithm to iterate through the string in a single pass, minimizing redundant computations.
  The function leverages the `abs` function to ensure all differences are treated as positive values, as required.
+////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+DAY-2!!!!
+3. Longest Palindromic Substring-Leetcode 5[Two Pointer]:
+Problem Statement:
+Give the Longest Palindromic Substring!
+Solution:
+class Solution {
+public:
+string findpal(int i, int j, string& s) {
+    while (i >= 0 && j < s.size() && s[i] == s[j]) {
+        i--;
+        j++;
+    }
+    return s.substr(i + 1, j - i - 1); 
+}
+ string longestPalindrome(string s) {
+        int i=0;
+  int n=s.size();
+  int length=0;
+  string ans="";
+  for(i=0;i<n;i++){
+    string sub1=findpal(i,i,s);
+    if(sub1.length()>length){
+      ans=sub1;
+      length=ans.length();
+    }
+     string sub2=findpal(i,i+1,s);
+    if(sub2.length()>length){
+      ans=sub2;
+      length=ans.length();
+    }
+}
+    return ans;
+    }
+};
+CODE EXPLANATION:
+Approach
+The solution uses a center expansion methoD:
+1. Treat each character (and pair of adjacent characters) as the potential center of a palindrome.
+2. Expand outward (to the left and right) while the characters match.
+3. Track the longest palindrome found during the process.
+
+ ode Walkthrough
+1. `findpal` Function: Expands outward from a given center (or pair of centers) to find the longest palindrome substring centered at that position.
+2. Main Function:
+   Loop through each character in the string.
+   Call `findpal` twice:
+   Once considering the current character as the center.
+   Once considering the current character and the next one as the center.
+   Update the result if a longer palindrome is found.
+3. Return the longest palindrome found.
+
+Complexity
+TimE: O(n^2), because each character expansion takes O(n), and we process each character.
+Space: O(1), since we only use variables for tracking.
+////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+4.Jump Game II-Leetcode45[Greedy Algorithm!]
+Problem Statement:
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
+Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at nums[i], you can jump to any nums[i + j] where:
+0 <= j <= nums[i] and
+i + j < n
+Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
+Solution:
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+      int i = 0, j = 0, farthest = 0, end = 0;
+while (i < nums.size() - 1) {
+    farthest = max(farthest, i + nums[i]);
+    if (i == end) {
+        J++;
+        end = farthest;
+    }
+    i++;
+}
+return j;
+};
+CODE EXPLANATION:
+1.Initialize Variables:
+   i: Current index in the array.
+   J: Count of jumps taken.
+   farthest`: Farthest index that can be reached so far.
+   end: The current range of the jump.
+
+2. Iterate Through the Array:
+   Update `farthest` to keep track of the maximum reach (`i + nums[i]`).
+    If the current index `i` equals `end`, it means the range of the current jump is exhausted:
+     Increment the jump count `J`.
+     Update `end` to `farthest`, the new range.
+
+3.Stop Condition:
+   The loop runs until we reach the last element of the array (`i < nums.size() - 1`).
+
+4. Return Result:
+   Return the total number of jumps.
+
+ Complexity:
+Time Complexity: O(n), where n is the size of the array (each index is processed once).
+Space Complexity:O(1), as no extra space is used.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+
 
