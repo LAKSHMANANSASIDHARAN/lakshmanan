@@ -46,3 +46,84 @@ int maxScore(string s) {
 // Space complexity is O(1)
 
 // Its sounds like simple but thing the logic and implementatio  of the code is a real task .
+
+/*Question 1: Washing Machine Time Estimation
+A washing machine uses sensors to measure the weight of clothes and selects the water level (Low, Medium, or High). Based on these, it calculates the time needed for washing.
+If the weight is 0, the time is 0 minutes.
+If the weight is less than or equal to 2000 grams, and water level is Low (L), the time is 25 minutes.
+If the weight is between 2001 and 4000 grams, and water level is Medium (M), the time is 35 minutes.
+If the weight is above 4000 grams, and water level is High (H), the time is 45 minutes.
+The washing machine's maximum capacity is 7000 grams.
+If the weight exceeds 7000 grams, print "OVERLOADED".
+If the weight is negative, print "INVALID INPUT".
+Input format:
+An integer (weight of clothes) and a character (L, M, or H for water level).
+Output format:
+Time Estimated: NN Minutes or OVERLOADED or INVALID INPUT.*/
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    int weight;
+    char waterLevel;
+    cin >> weight >> waterLevel;
+    if (weight < 0) {
+        cout << "INVALID INPUT" << endl;
+    } else if (weight == 0) {
+        cout << "Time Estimated: 0 Minutes" << endl;
+    } else if (weight > 7000) {
+        cout << "OVERLOADED" << endl;
+    } else {
+        if (waterLevel == 'L' && weight <= 2000) {
+            cout << "Time Estimated: 25 Minutes" << endl;
+        } else if (waterLevel == 'M' && weight > 2000 && weight <= 4000) {
+            cout << "Time Estimated: 35 Minutes" << endl;
+        } else if (waterLevel == 'H' && weight > 4000) {
+            cout << "Time Estimated: 45 Minutes" << endl;
+        } else {
+            cout << "INVALID INPUT" << endl;
+        }
+    } 
+ return 0;
+}
+/*Question 1: Washing Machine Time Estimation
+A washing machine uses sensors to measure the weight of clothes and selects the water level (Low, Medium, or High). Based on these, it calculates the time needed for washing.
+If the weight is 0, the time is 0 minutes.
+If the weight is less than or equal to 2000 grams, and water level is Low (L), the time is 25 minutes.
+If the weight is between 2001 and 4000 grams, and water level is Medium (M), the time is 35 minutes.
+If the weight is above 4000 grams, and water level is High (H), the time is 45 minutes.
+The washing machine's maximum capacity is 7000 grams.
+If the weight exceeds 7000 grams, print "OVERLOADED".
+If the weight is negative, print "INVALID INPUT".
+Input format:
+An integer (weight of clothes) and a character (L, M, or H for water level).
+Output format:
+Time Estimated: NN Minutes or OVERLOADED or INVALID INPUT.
+Question 2: Safe Addition and Subtraction
+You are given two numbers. Perform both addition and subtraction with the following rules:
+Addition:
+If the result is negative, display its absolute value.
+Subtraction:
+If the result is negative, display its absolute value.
+Input format:
+Two integers.
+Output format:
+Addition of 2 values: NN
+Subtraction of 2 values: NN*/
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    int num1, num2;
+    cin >> num1 >> num2;
+
+    int addition = abs(num1 + num2);
+    int subtraction = abs(num1 - num2);
+
+    cout << "Addition of 2 values: " << addition << endl;
+    cout << "Subtraction of 2 values: " << subtraction << endl;
+    return 0;
+}
+
+
+
