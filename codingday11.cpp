@@ -199,5 +199,48 @@ int numJewelsInStones(string jewels, string stones) {
 
      }
      return sum;
+/*Find the Prefix Common Array of Two Arrays
+A prefix common array of A and B is an array C such that C[i] is equal to the 
+count of numbers that are present at or before the index i in both A and B.
+Return the prefix common array of A and B
+Example 1:
+Input: A = [1,3,2,4], B = [3,1,2,4]
+Output: [0,2,3,4]
+Explanation: At i = 0: no number is common, so C[0] = 0.
+At i = 1: 1 and 3 are common in A and B, so C[1] = 2.
+At i = 2: 1, 2, and 3 are common in A and B, so C[2] = 3.
+At i = 3: 1, 2, 3, and 4 are common in A and B, so C[3] = 4.
+Example 2:
+Input: A = [2,3,1], B = [3,1,2]
+Output: [0,1,3]
+Explanation: At i = 0: no number is common, so C[0] = 0.
+At i = 1: only 3 is common in A and B, so C[1] = 1.
+At i = 2: 1, 2, and 3 are common in A and B, so C[2] = 3.*/
+unordered_map<int, int> mpp;
+        vector<int> C;
+        int i = 0, sum = 0;
+        while (i < A.size()) {
+            if(A[i] == B[i]) {
+                    sum += 1;
+                    C.push_back(sum);
+                }
+            else {
+                if (mpp.find(A[i]) != mpp.end()) {
+                    sum += 1;
+
+                } else {
+                    mpp[A[i]] = 1;
+                }
+                if (mpp.find(B[i]) != mpp.end()) {
+                    sum += 1;
+
+                } else {
+                    mpp [B[i]] = 1;
+                }
+                C.push_back(sum);
+            }
+            i++;
+        }
+        return C;
 
 
