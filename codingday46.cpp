@@ -45,3 +45,39 @@ public:
         return minReward;
     }
 };
+/*Count Negative Numbers in a Sorted Matrix
+Given a m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise, return the number of negative numbers in grid.
+Example 1:
+Input: grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+Output: 8
+Explanation: There are 8 negatives number in the matrix.
+Example 2:
+Input: grid = [[3,2],[1,0]]
+Output: 0*/
+class Solution {
+int bs(vector<int>&grid){
+    int left=0,right=grid.size()-1;
+    int size=0,maxi=0;
+    while(left<=right){
+        int mid=(left+right)/2;
+        if(grid[mid]<0){
+           size=grid.size()-mid;
+           maxi=max(maxi,size);
+           right=mid-1;
+        }
+        else{
+            left=mid+1;
+        }
+        
+    }
+    return maxi;
+}
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int count=0;
+        for(int i=0;i<grid.size();i++){
+           count+=bs(grid[i]);
+        }
+        return count;
+    }
+};
