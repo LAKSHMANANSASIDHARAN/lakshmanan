@@ -6,7 +6,7 @@ Choosing to remove index 2 results in nums = [6,1,4,1].
 Choosing to remove index 4 results in nums = [6,1,7,4].
 An array is fair if the sum of the odd-indexed values equals the sum of the even-indexed values.
 Return the number of indices that you could choose such that after the removal, nums is fair.
-Example 1:
+Example 1: 
 Input: nums = [2,1,6,4]
 Output: 1
 Explanation:
