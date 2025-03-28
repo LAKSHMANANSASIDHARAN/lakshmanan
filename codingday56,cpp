@@ -1,0 +1,68 @@
+/*Find K Closest Elements
+Given a sorted integer array arr, two integers k and x, return the k closest integers to x in the array. The result should also be sorted in ascending order.
+An integer a is closer to x than an integer b if:
+|a - x| < |b - x|, or
+|a - x| == |b - x| and a < b
+Example 1:
+Input: arr = [1,2,3,4,5], k = 4, x = 3
+Output: [1,2,3,4]
+Example 2:
+Input: arr = [1,1,2,3,4,5], k = 4, x = -1
+Output: [1,1,2,3]*/
+class Solution {
+    int bs(vector<int>& arr, int& x) {
+        
+        
+       int l = 0, r = arr.size() - 1, res = -1;
+        while (l <= r) {
+            int mid = (r + l) / 2;
+            if (arr[mid] == x) {
+                return mid;
+            } else if (arr[mid] < x) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return l; 
+    }
+
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        vector<int> ans;
+        int mid = bs(arr, x);
+        
+       if (mid == arr.size()) mid--; 
+        if (mid > 0 && abs(arr[mid - 1] - x) <= abs(arr[mid] - x)) {
+            mid--; 
+        }
+        int left = mid - 1, right = mid + 1;
+        ans.push_back(arr[mid]);
+        while ((left >= 0 && right < arr.size()) ) {
+            if(ans.size()==k){
+                break;
+            }
+
+            if (abs(arr[left] - x) <= abs(arr[right] - x)) {
+                ans.push_back(arr[left]);
+                left--;
+            } else if (abs(arr[left] - x) > abs(arr[right] - x)) {
+                ans.push_back(arr[right]);
+                right++;
+            }
+        }
+        if (left >= 0 and right <= arr.size()) {
+            while (left >= 0 && ans.size() != k) {
+                ans.push_back(arr[left]);
+                left--;
+            }
+        } else if (left < 0 and right < arr.size()) {
+            while (right < arr.size() && ans.size() != k) {
+                ans.push_back(arr[right]);
+                right++;
+            }
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
